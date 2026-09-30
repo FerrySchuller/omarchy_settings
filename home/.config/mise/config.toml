@@ -1,0 +1,7 @@
+[tools]
+codex = "latest"
+node = "26.10.0"
+pi = "latest"
+
+[settings.upgrade]
+auto_prune = false
