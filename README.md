@@ -1,10 +1,9 @@
 # omarchy_settings
 
-Persoonlijke Omarchy (4.x) desktop- en shellsetup van Ferry Schuller.
+Personal Omarchy (4.x) desktop and shell setup for Ferry Schuller.
 
-- **`SETUP.md`** — master-gids; geef dit aan een AI-agent op een schone Omarchy-install.
-- **`home/`** — bestanden die naar `$HOME` gaan.
-- **`packages/`** — toe te voegen repo- en AUR-packages.
+- **`SETUP.md`** — master guide; hand this to an AI agent on a clean Omarchy install.
+- **`home/`** — files that go into `$HOME`.
+- **`packages/`** — repo and AUR packages to add.
 
-Gebruik: SSH-key + `/login` regelen → repo clonen → `SETUP.md` laten uitvoeren.
-Secrets (SSH, GPG, agent-auth) staan bewust niet in de repo.
+Usage: set up SSH key + run `/login` → clone the repo → let the agent run `SETUP.md`.

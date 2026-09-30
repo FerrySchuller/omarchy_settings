@@ -1,4 +1,4 @@
-# Extra repo-packages (Omarchy-repo + extra)
+# Extra repo packages (Omarchy repo + extra)
 google-chrome
 kitty
 vim

@@ -1,5 +1,5 @@
 syntax on
 
-" Laat de tekst na :wq in de terminal staan i.p.v. de alternatieve
-" schermbuffer te gebruiken (die je vorige scherm terugzet).
+" Keep text in the terminal after :wq instead of switching to the
+" alternate screen buffer (which restores your previous screen).
 set t_ti= t_te=

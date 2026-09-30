@@ -1,13 +1,13 @@
 # Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
 [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
 
-# ~/bin in PATH (voor alle shells, ook niet-interactieve)
+# ~/bin in PATH (all shells, including non-interactive)
 case ":$PATH:" in
   *":$HOME/bin:"*) ;;
   *) export PATH="$HOME/bin:$PATH" ;;
 esac
 
-# ssh-agent: eenmalig per sessie starten, daarna dezelfde socket hergebruiken
+# ssh-agent: start once per session, then reuse the same socket
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock"
 ssh-add -l >/dev/null 2>&1
 if [ "$?" -eq 2 ]; then
@@ -31,7 +31,7 @@ alias poker='cd /prod/apps/pokermgr.io && . env/bin/activate'
 alias leads='cd /prod/apps/leads && . env/bin/activate'
 alias vavo='cd /prod/apps/vavo && . env/bin/activate'
 
-# GNU ls in plaats van de eza-alias van Omarchy
+# GNU ls instead of Omarchy's eza alias
 unalias ls 2>/dev/null
 alias ls='ls --color=auto -h'
 
