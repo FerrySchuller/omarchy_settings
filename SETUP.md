@@ -83,9 +83,12 @@ cp home/.local/state/omarchy/workspace-layouts/2.lua \
 # or: focus workspace 2 and use the toggle-layout keybinding
 ```
 
-All other Hyprland config (`~/.config/hypr/*`), `shell.json` and
-`extensions/omarchy-menu.jsonc` stay **default** — nothing was changed there.
-Idle stays default too (150s screensaver / 300s lock).
+All Hyprland config (`~/.config/hypr/*`) and `extensions/omarchy-menu.jsonc`
+stay **default** — nothing was changed there.
+
+The only `shell.json` change is the idle lock: one hour instead of five
+minutes (the screensaver stays at the default 2.5 minutes). It ships in
+`home/.config/omarchy/shell.json` and is applied in §3.
 
 ---
 
@@ -116,6 +119,7 @@ What this sets:
 | `~/.config/mimeapps.list` | Chrome as browser, HEY for mailto |
 | `~/.config/user-dirs.dirs` | Desktop/Templates/PublicShare → `$HOME`, plus `PROJECTS` |
 | `~/.config/omarchy/defaults/agent` | `pi` |
+| `~/.config/omarchy/shell.json` | idle lock 300 → 3600s (1 hour) |
 
 > The aliases `poker`/`leads`/`vavo` point at `/prod/apps/...`; they only do
 > something if those projects exist.
@@ -163,6 +167,6 @@ omarchy refresh hyprland
 omarchy refresh config <relative-path>   # e.g. hypr/bindings.lua
 ```
 
-This repo intentionally does **not** touch `~/.config/hypr/`, `shell.json`,
+This repo intentionally does **not** touch `~/.config/hypr/`,
 `omarchy-menu.jsonc`, terminals, tmux, lazygit, fastfetch or GTK/dconf —
 those are all default here.
