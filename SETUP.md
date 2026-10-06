@@ -83,8 +83,9 @@ cp home/.local/state/omarchy/workspace-layouts/2.lua \
 # or: focus workspace 2 and use the toggle-layout keybinding
 ```
 
-All Hyprland config (`~/.config/hypr/*`) and `extensions/omarchy-menu.jsonc`
-stay **default** — nothing was changed there.
+All Hyprland config stays **default** except `bindings.lua`, which repoints
+the file-manager key (see §3). `extensions/omarchy-menu.jsonc` stays
+**default**.
 
 The only `shell.json` change is the idle lock: one hour instead of five
 minutes (the screensaver stays at the default 2.5 minutes). It ships in
@@ -101,6 +102,7 @@ chmod +x ~/.config/omarchy/hooks/theme-set.d/spotifast-theme
 xdg-user-dirs-update
 mise install                 # installs codex / node / pi
 omarchy restart terminal     # reload terminal config
+hyprctl reload && hyprctl configerrors   # apply + validate Hyprland bindings
 ```
 
 What this sets:
@@ -120,6 +122,7 @@ What this sets:
 | `~/.config/user-dirs.dirs` | Desktop/Templates/PublicShare → `$HOME`, plus `PROJECTS` |
 | `~/.config/omarchy/defaults/agent` | `pi` |
 | `~/.config/omarchy/shell.json` | idle lock 300 → 3600s (1 hour) |
+| `~/.config/hypr/bindings.lua` | SUPER+SHIFT+F → `flea` (was nautilus) |
 
 > The aliases `poker`/`leads`/`vavo` point at `/prod/apps/...`; they only do
 > something if those projects exist.
@@ -155,6 +158,7 @@ omarchy default agent                 # → pi
 omarchy default terminal              # → kitty
 xdg-settings get default-web-browser  # → google-chrome.desktop
 type ls | head -1                     # → ls --color=auto -h
+omarchy menu keybindings --print | grep 'File manager'   # → SUPER SHIFT + F
 ```
 
 ---
@@ -167,6 +171,6 @@ omarchy refresh hyprland
 omarchy refresh config <relative-path>   # e.g. hypr/bindings.lua
 ```
 
-This repo intentionally does **not** touch `~/.config/hypr/`,
-`omarchy-menu.jsonc`, terminals, tmux, lazygit, fastfetch or GTK/dconf —
-those are all default here.
+This repo intentionally does **not** touch `omarchy-menu.jsonc`, the rest of
+`~/.config/hypr/` (only `bindings.lua` is overridden), terminals, tmux,
+lazygit, fastfetch or GTK/dconf — those are all default here.

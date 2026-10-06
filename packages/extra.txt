@@ -2,3 +2,4 @@
 google-chrome
 kitty
 vim
+flea
