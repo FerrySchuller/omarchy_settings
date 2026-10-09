@@ -87,9 +87,10 @@ All Hyprland config stays **default** except `bindings.lua`, which repoints
 the file-manager key (see §3). `extensions/omarchy-menu.jsonc` stays
 **default**.
 
-The only `shell.json` change is the idle lock: one hour instead of five
-minutes (the screensaver stays at the default 2.5 minutes). It ships in
-`home/.config/omarchy/shell.json` and is applied in §3.
+`shell.json` changes: idle lock is one hour instead of five minutes (the
+screensaver stays at the default 2.5 minutes), and it carries the LIFX bar
+widget (see §3.1). It ships in `home/.config/omarchy/shell.json` and is applied
+in §3.
 
 ---
 
@@ -98,11 +99,13 @@ minutes (the screensaver stays at the default 2.5 minutes). It ships in
 ```bash
 cp -a home/. "$HOME"/
 chmod +x ~/.config/omarchy/hooks/theme-set.d/spotifast-theme
+chmod +x ~/.config/omarchy/plugins/ferry.lifx/lifxctl
 
 xdg-user-dirs-update
 mise install                 # installs codex / node / pi
 omarchy restart terminal     # reload terminal config
 hyprctl reload && hyprctl configerrors   # apply + validate Hyprland bindings
+omarchy-shell shell rescanPlugins        # discover the LIFX bar widget
 ```
 
 What this sets:
@@ -121,11 +124,37 @@ What this sets:
 | `~/.config/mimeapps.list` | Chrome as browser, HEY for mailto |
 | `~/.config/user-dirs.dirs` | Desktop/Templates/PublicShare → `$HOME`, plus `PROJECTS` |
 | `~/.config/omarchy/defaults/agent` | `pi` |
-| `~/.config/omarchy/shell.json` | idle lock 300 → 3600s (1 hour) |
+| `~/.config/omarchy/shell.json` | idle lock 300 → 3600s (1 hour); LIFX widget in the bar |
 | `~/.config/hypr/bindings.lua` | SUPER+SHIFT+F → `flea` (was nautilus) |
+| `~/.config/omarchy/plugins/ferry.lifx/` | standalone LIFX bar widget + `lifxctl` (see §3.1) |
+| `~/bin/lifx.py` | LIFX LAN control script (backing for `lifxctl`) |
 
 > The aliases `poker`/`leads`/`vavo` point at `/prod/apps/...`; they only do
 > something if those projects exist.
+
+### 3.1 LIFX bar widget
+
+A self-contained bar widget (`ferry.lifx`) that sits in the top bar next to
+Bluetooth and opens a control popup for the LIFX lamp at `192.168.178.173`
+(power, Warm 50, brightness, temperature, colour presets). All controls go
+through the standalone `lifxctl` script next to the plugin, which pins the
+lamp IP and forwards to `~/bin/lifx.py`.
+
+Files (copied by §3):
+
+- `~/.config/omarchy/plugins/ferry.lifx/manifest.json`
+- `~/.config/omarchy/plugins/ferry.lifx/Panel.qml`
+- `~/.config/omarchy/plugins/ferry.lifx/lifxctl`
+
+The widget is enabled because `ferry.lifx` appears in the `bar.layout.right`
+of `shell.json`, immediately before `omarchy.bluetooth`. After copying, run the
+`rescanPlugins` line from §3. Change the lamp IP in `lifxctl` (`LIFX_IP`) if
+needed. Test the script on its own:
+
+```bash
+~/.config/omarchy/plugins/ferry.lifx/lifxctl status
+~/.config/omarchy/plugins/ferry.lifx/lifxctl warm 50
+```
 
 ---
 
@@ -159,6 +188,7 @@ omarchy default terminal              # → kitty
 xdg-settings get default-web-browser  # → google-chrome.desktop
 type ls | head -1                     # → ls --color=auto -h
 omarchy menu keybindings --print | grep 'File manager'   # → SUPER SHIFT + F
+~/.config/omarchy/plugins/ferry.lifx/lifxctl status       # → JSON lamp state
 ```
 
 ---

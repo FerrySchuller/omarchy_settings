@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# lifxctl — standalone LIFX control wrapper for the Omarchy LIFX bar widget.
+#
+# The lamp IP is fixed here; everything else is passed straight through to
+# lifx.py, so every lifx.py command keeps working:
+#
+#   lifxctl status          -> JSON status (alias for `lifx --json`)
+#   lifxctl on | off | toggle
+#   lifxctl warm [0-100]    -> warm white, optional brightness
+#   lifxctl b 50            -> absolute brightness (b +10 / b -10 also work)
+#   lifxctl k 2700          -> colour temperature
+#   lifxctl color 280 80 60 -> hue/sat/bri
+#   lifxctl paars 30        -> colour preset, optional brightness
+#
+# Override the lamp with LIFX_IP, or the binary with LIFX_BIN.
+set -euo pipefail
+
+LIFX_BIN="${LIFX_BIN:-$HOME/bin/lifx.py}"
+LIFX_IP="${LIFX_IP:-192.168.178.173}"
+
+if (( $# == 0 )); then
+  exec "$LIFX_BIN" -i "$LIFX_IP" --json
+fi
+
+if [[ "$1" == "status" ]]; then
+  shift
+  exec "$LIFX_BIN" -i "$LIFX_IP" --json "$@"
+fi
+
+exec "$LIFX_BIN" -i "$LIFX_IP" "$@"

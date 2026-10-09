@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "ferry.lifx",
+  "name": "LIFX",
+  "version": "1.0.0",
+  "author": "Ferry Schuller",
+  "description": "Control a LIFX lamp: power, warm preset, brightness, temperature and colours",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "LIFX",
+    "description": "Control a LIFX lamp",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
