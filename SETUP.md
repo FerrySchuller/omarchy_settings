@@ -112,7 +112,7 @@ What this sets:
 
 | File | Change vs default |
 |---|---|
-| `~/.bashrc` | `~/bin` in PATH; ssh-agent on a fixed socket; aliases `poker`/`leads`/`vavo`; `ls` → GNU ls; `vi` → `vim` |
+| `~/.bashrc` | `~/bin` in PATH; ssh-agent on a fixed socket; `LESS=-R -X` (pager content stays after `q`); aliases `poker`/`leads`/`vavo`; `ls` → GNU ls; `vi` → `vim` |
 | `~/.vimrc` | `set t_ti= t_te=` (text stays in the terminal scrollback after `:wq`) |
 | `~/.XCompose` | name + email via Multi-key |
 | `~/.config/starship.toml` | always show hostname + python venv prompt |

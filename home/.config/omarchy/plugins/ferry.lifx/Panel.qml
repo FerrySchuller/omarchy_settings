@@ -175,14 +175,6 @@ Panel {
         }
 
         Button {
-          text: "Toggle"
-          foreground: root.bar.foreground
-          fontFamily: root.bar.fontFamily
-          bordered: true
-          onClicked: root.run(["toggle"])
-        }
-
-        Button {
           text: "Off"
           foreground: root.bar.foreground
           fontFamily: root.bar.fontFamily
