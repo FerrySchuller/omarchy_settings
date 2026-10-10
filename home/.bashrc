@@ -27,6 +27,9 @@ source "$OMARCHY_PATH/default/bash/rc"
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 
+# Keep pager output on screen after quitting less with q (like vim's t_ti/t_te).
+export LESS="-R -X"
+
 alias poker='cd /prod/apps/pokermgr.io && . env/bin/activate'
 alias leads='cd /prod/apps/leads && . env/bin/activate'
 alias vavo='cd /prod/apps/vavo && . env/bin/activate'
